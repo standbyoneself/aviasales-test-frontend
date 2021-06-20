@@ -1,0 +1,39 @@
+.no-filter {
+  position: relative;
+
+  @media (max-width: 900px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  &__text {
+    font-size: 16px;
+    color: @text-color;
+
+    &--right {
+      margin: 10px 0 0 30px;
+
+      @media (max-width: 900px) {
+        margin: 10px 0 0;
+      }
+    }
+
+    &--blue {
+      color: @blue;
+      font-weight: 600;
+    }
+  }
+}
+
+.dasha-filter {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  max-width: 100px;
+
+  @media (max-width: 900px) {
+    position: static;
+    margin-left: 20px;
+  }
+}

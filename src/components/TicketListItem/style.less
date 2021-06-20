@@ -1,0 +1,53 @@
+.ticket-list-item {
+  background-color: #fff;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 20px;
+  min-height: 184px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+}
+
+.ticket-price {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 24px;
+  color: @blue;
+}
+
+.ticket-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ticket-details-item-container {
+  display: grid;
+  row-gap: 10px;
+}
+
+.ticket-details-item {
+  &__text {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    color: @text-color;
+
+    &--gray {
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 18px;
+      .letter-spacing();
+      color: #a0b0b9;
+      text-transform: uppercase;
+    }
+  }
+}

@@ -1,0 +1,35 @@
+.ticket-view {
+  max-width: 960px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 50px 103px;
+  display: grid;
+  grid-template-columns: 232px 1fr;
+  grid-template-rows: 89px 30px 50px 20px 182px auto;
+  grid-template-areas:
+    'logo logo'
+    '. .'
+    'filter tabs'
+    'filter .'
+    'filter ticket-list'
+    '. ticket-list';
+  column-gap: 20px;
+
+  @media (max-width: 900px) {
+    padding: 20px;
+    grid-template-columns: auto;
+    grid-template-rows: 89px 30px 252px 20px 50px 20px auto;
+    grid-template-areas:
+      'logo'
+      '.'
+      'filter'
+      '.'
+      'tabs'
+      '.'
+      'ticket-list';
+  }
+
+  @media (max-width: 400px) {
+    padding: 20px 10px;
+  }
+}
