@@ -6,6 +6,8 @@ Requirements are here: https://github.com/KosyanMedia/test-tasks/tree/master/avi
 
 Fully responsive SPA that allows to filter and sort air tickets
 
+**Demo**: https://aviasales-test-frontend.vercel.app
+
 ### Start development server
 
 `yarn dev`
