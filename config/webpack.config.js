@@ -151,17 +151,7 @@ module.exports = function (webpackEnv) {
             sourceMap: true,
             additionalData:
               preProcessor === 'less-loader' &&
-              `@text-color: #4a4a4a;
-            @blue: #2196f3;
-            
-            .box-shadow {
-              box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-            }
-            
-            .letter-spacing {
-              letter-spacing: 0.5px;
-            }
-            `,
+              `@import 'src/style/global.less';`,
           },
         }
       );
