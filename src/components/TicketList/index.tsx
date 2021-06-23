@@ -6,14 +6,14 @@ import { Ticket } from '../../types';
 import './style.less';
 import { observer } from 'mobx-react-lite';
 import { useContext } from 'react';
-import StoreContext from '../../StoreContext';
+import TicketStoreContext from '../../contexts/TicketStoreContext';
 
 interface Props {
   tickets: Ticket[];
 }
 
 export default observer(function TicketList({ tickets }: Props) {
-  const ticketStore = useContext(StoreContext);
+  const ticketStore = useContext(TicketStoreContext);
 
   return (
     <div className='ticket-list-container'>

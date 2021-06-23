@@ -1,5 +1,5 @@
 import TicketView from './views/TicketView';
-import StoreContext from './StoreContext';
+import TicketStoreContext from './contexts/TicketStoreContext';
 import HTTPClient from './api/HTTPClient';
 import TicketService from './services/TicketService';
 import TicketStore from './store/TicketStore';
@@ -13,10 +13,10 @@ const styles = {
 
 export default function App() {
   return (
-    <StoreContext.Provider value={ticketStore}>
+    <TicketStoreContext.Provider value={ticketStore}>
       <section className='wrapper' style={styles}>
         <TicketView />
       </section>
-    </StoreContext.Provider>
+    </TicketStoreContext.Provider>
   );
 }

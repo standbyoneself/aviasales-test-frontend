@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { ChangeEvent, useContext, useRef } from 'react';
-import StoreContext from '../../StoreContext';
+import TicketStoreContext from '../../contexts/TicketStoreContext';
 import { StopFilterName, StopFilterRecord, StopFilterValue } from '../../types';
 import './style.less';
 
@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default observer(function FilterCondition({ stopFilter, index }: Props) {
-  const ticketStore = useContext(StoreContext);
+  const ticketStore = useContext(TicketStoreContext);
 
   const [[stopFilterName, stopFilterValue]] = Object.entries(stopFilter) as [
     [StopFilterName, StopFilterValue]

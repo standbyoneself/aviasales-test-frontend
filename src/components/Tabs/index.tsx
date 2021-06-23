@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { useContext } from 'react';
-import StoreContext from '../../StoreContext';
+import TicketStoreContext from '../../contexts/TicketStoreContext';
 import { SortName, SortRecord, SortValue } from '../../types';
 import Tab from '../Tab';
 import './style.less';
@@ -12,7 +12,7 @@ const tabRecords: SortRecord[] = [
 ];
 
 export default observer(function Tabs() {
-  const ticketStore = useContext(StoreContext);
+  const ticketStore = useContext(TicketStoreContext);
 
   return (
     <div className='tabs'>
