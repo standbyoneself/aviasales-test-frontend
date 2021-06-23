@@ -1,5 +1,7 @@
+import { useContext } from 'react';
 import dashaErrorImg from '../../assets/img/dasha-error.png';
 import Button from '../../components/Button';
+import TicketStoreContext from '../../contexts/TicketStoreContext';
 import './style.less';
 
 interface Props {
@@ -7,6 +9,8 @@ interface Props {
 }
 
 export default function ErrorView({ statusCode }: Props) {
+  const ticketStore = useContext(TicketStoreContext);
+
   return (
     <section className='error-view'>
       <div className='error-view__content'>
@@ -17,8 +21,8 @@ export default function ErrorView({ statusCode }: Props) {
           </p>
           <p className='error-details__code'>№ {statusCode}</p>
           <Button
-            text='Обновить страницу'
-            onClick={() => window.location.reload()}
+            text='Попробовать еще раз'
+            onClick={() => ticketStore.getTickets()}
             style={{ marginTop: 40 }}
           />
         </div>

@@ -6,10 +6,10 @@ import TicketList from '../../components/TicketList';
 import ErrorView from '../ErrorView';
 import './style.less';
 import { observer } from 'mobx-react-lite';
-import StoreContext from '../../StoreContext';
+import TicketStoreContext from '../../contexts/TicketStoreContext';
 
 export default observer(function TicketView() {
-  const ticketStore = useContext(StoreContext);
+  const ticketStore = useContext(TicketStoreContext);
 
   useEffect(() => {
     ticketStore.getTickets();
