@@ -1,47 +1,33 @@
-.error-view {
-  min-height: 100vh;
-  padding: 20px;
-
-  @media (max-width: 900px) {
-    display: flex;
-    align-items: center;
-  }
-
+.error {
   &__content {
-    position: absolute;
-    top: 40%;
-    left: 30%;
-    transform: translate(-30%, -40%);
     display: flex;
+    justify-content: space-between;
     align-items: center;
 
     @media (max-width: 900px) {
-      flex: 1;
-      position: static;
-      transform: none;
       flex-direction: column;
     }
   }
 }
 
 .dasha-error {
-  max-width: 200px;
+  max-width: 120px;
 }
 
 .error-details {
   @media (max-width: 900px) {
-    margin: 20px 0 0;
-    text-align: center;
     width: 100%;
+    margin-top: 20px;
+    text-align: center;
   }
 
   &__intro {
-    font-size: 20px;
+    font-size: 18px;
     color: @text-color;
   }
 
   &__code {
-    font-size: 32px;
+    font-size: 24px;
     font-weight: 600;
     color: @blue;
     margin: 5px 0 0 40px;
