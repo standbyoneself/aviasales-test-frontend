@@ -6,6 +6,7 @@ import TicketListContainer from '../../components/TicketListContainer';
 import './style.less';
 import { observer } from 'mobx-react-lite';
 import TicketStoreContext from '../../contexts/TicketStoreContext';
+import { stopFilters } from '../../constants';
 
 export default observer(function TicketView() {
   const ticketStore = useContext(TicketStoreContext);
@@ -17,7 +18,7 @@ export default observer(function TicketView() {
   return (
     <section className='ticket-view'>
       <Logo />
-      <Filter />
+      <Filter stopFilters={stopFilters} />
       <Tabs />
       <TicketListContainer />
     </section>

@@ -2,19 +2,15 @@ import './style.less';
 import FilterCondition from '../FilterCondition';
 import { StopFilterRecord } from '../../types';
 
-const stopFilters: StopFilterRecord[] = [
-  { Все: 'all' },
-  { 'Без пересадок': 0 },
-  { '1 пересадка': 1 },
-  { '2 пересадки': 2 },
-  { '3 пересадки': 3 },
-];
+interface Props {
+  stopFilters: StopFilterRecord[];
+}
 
-export default function Filter() {
+export default function Filter({ stopFilters }: Props) {
   return (
     <div className='filter'>
       <p className='filter__title'>Количество пересадок</p>
-      <form className='filter-form'>
+      <form className='filter-form' data-testid='filter-form'>
         {stopFilters.map((stopFilter, index) => {
           return (
             <FilterCondition
