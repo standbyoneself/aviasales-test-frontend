@@ -113,16 +113,24 @@ export default class TicketStore {
       .then((response) => response.searchId);
   }
 
-  async getTickets() {
+  async getTickets(prevTickets: Ticket[] = [], nextTickets: Ticket[] = []) {
     try {
       this.statusCode = null;
+
+      const tickets = [...prevTickets, ...nextTickets];
+
       if (!this.searchId) {
         await this.getSearchId();
       }
 
-      const tickets = await this.service
-        .fetchTickets(this.searchId)
-        .then((response) => response.tickets);
+      const { tickets: fetchedTickets, stop } = await this.service.fetchTickets(
+        this.searchId
+      );
+
+      if (stop === false) {
+        this.getTickets(tickets, fetchedTickets);
+        return;
+      }
 
       runInAction(() => {
         this.tickets = tickets;
