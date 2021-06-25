@@ -1,5 +1,5 @@
 import TicketListItem from '../TicketListItem';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { TransitionGroup } from 'react-transition-group';
 import Button from '../Button';
 import { Ticket } from '../../types';
 import './style.less';
