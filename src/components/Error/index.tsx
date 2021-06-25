@@ -8,7 +8,7 @@ interface Props {
   statusCode: number;
 }
 
-export default function ErrorView({ statusCode }: Props) {
+export default function Error({ statusCode }: Props) {
   const ticketStore = useContext(TicketStoreContext);
 
   return (
