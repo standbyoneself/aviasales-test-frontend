@@ -12,8 +12,8 @@ export default function ErrorView({ statusCode }: Props) {
   const ticketStore = useContext(TicketStoreContext);
 
   return (
-    <section className='error-view'>
-      <div className='error-view__content'>
+    <section className='error'>
+      <div className='error__content'>
         <img className='dasha-error' src={dashaErrorImg} />
         <div className='error-details'>
           <p className='error-details__intro'>

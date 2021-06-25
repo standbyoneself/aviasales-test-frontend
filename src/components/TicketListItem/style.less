@@ -51,3 +51,15 @@
     }
   }
 }
+
+.ticket-list-item-fade {
+  &-enter,
+  &-appear {
+    opacity: 0;
+
+    &-active {
+      transition: opacity 0.4s ease;
+      opacity: 1;
+    }
+  }
+}

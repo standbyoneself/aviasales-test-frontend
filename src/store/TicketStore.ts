@@ -21,6 +21,7 @@ export default class TicketStore {
   sortedBy: SortValue = 'cheapest';
   statusCode: number | null = null;
   offsetCoef: number = 1;
+  isLoading: boolean = false;
 
   constructor(protected readonly service: TicketService) {
     this.service = service;
@@ -115,6 +116,7 @@ export default class TicketStore {
 
   async getTickets(prevTickets: Ticket[] = [], nextTickets: Ticket[] = []) {
     try {
+      this.isLoading = true;
       this.statusCode = null;
 
       const tickets = [...prevTickets, ...nextTickets];
@@ -134,10 +136,12 @@ export default class TicketStore {
 
       runInAction(() => {
         this.tickets = tickets;
+        this.isLoading = false;
       });
     } catch (error) {
       runInAction(() => {
         this.statusCode = error.response.status;
+        this.isLoading = false;
       });
     }
   }

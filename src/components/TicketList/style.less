@@ -1,28 +1,4 @@
-.ticket-list-container {
-  grid-area: ticket-list;
-}
-
 .ticket-list {
   display: grid;
   row-gap: 20px;
-}
-
-.ticket-list-item-fade {
-  &-enter {
-    opacity: 0;
-
-    &-active {
-      transition: opacity 0.4s ease;
-      opacity: 1;
-    }
-  }
-
-  &-exit {
-    opacity: 1;
-
-    &-active {
-      transition: opacity 0.4s ease;
-      opacity: 0;
-    }
-  }
 }
