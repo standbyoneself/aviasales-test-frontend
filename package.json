@@ -82,7 +82,11 @@
     "dev": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "lint": "node_modules/.bin/eslint --ext ts --ext tsx src"
+    "lint": "node_modules/.bin/eslint --ext ts --ext tsx src",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": "yarn test --watchAll=false --bail --findRelatedTests"
   },
   "eslintConfig": {
     "extends": [
@@ -162,6 +166,8 @@
   },
   "devDependencies": {
     "@types/react-transition-group": "^4.4.1",
-    "less-loader": "^7.0.0"
+    "husky": "^6.0.0",
+    "less-loader": "^7.0.0",
+    "lint-staged": "^11.0.0"
   }
 }
