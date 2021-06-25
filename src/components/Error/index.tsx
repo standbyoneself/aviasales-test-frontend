@@ -14,7 +14,7 @@ export default function Error({ statusCode }: Props) {
   return (
     <section className='error'>
       <div className='error__content'>
-        <img className='dasha-error' src={dashaErrorImg} />
+        <img className='dasha-error' src={dashaErrorImg} alt='dasha-error' />
         <div className='error-details'>
           <p className='error-details__intro'>
             Хьюстон, кажется, у нас проблема...
