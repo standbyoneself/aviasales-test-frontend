@@ -12,7 +12,10 @@ export default observer(function Logo() {
     <div className='logo'>
       {/* Using object because of render bug in Safari */}
       <object data={earth} type='image/svg+xml'></object>
-      <div className={`plane-container ${ticketStore.isLoading && 'animate'}`}>
+      <div
+        className={`plane-container ${ticketStore.isLoading && 'animate'}`}
+        data-testid='plane-container'
+      >
         <Plane className='plane' />
       </div>
     </div>
