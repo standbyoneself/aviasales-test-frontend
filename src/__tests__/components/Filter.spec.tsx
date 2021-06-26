@@ -1,6 +1,6 @@
 import { screen, render } from '@testing-library/react';
 import Filter from '@/components/Filter';
-import { StopFilterRecord } from 'types';
+import { StopFilterRecord } from '@/types';
 
 const stopFilters: StopFilterRecord[] = [
   {
