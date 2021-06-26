@@ -2,13 +2,12 @@ import { screen, render, fireEvent } from '@testing-library/react';
 import Button from '../components/Button';
 
 describe('Button', () => {
-  it('should render correctly', () => {
+  it('should render text correctly', () => {
     render(<Button text='Touch me' />);
 
     const button = screen.getByTestId('button');
 
     expect(button).toHaveTextContent('Touch me');
-    expect(button).toHaveClass('button');
   });
 
   it('should execute onClick callback', () => {
@@ -23,11 +22,11 @@ describe('Button', () => {
     expect(fn).toHaveBeenCalled();
   });
 
-  it('should accept inline styles correctly', () => {
+  it('should apply inline styles correctly', () => {
     render(<Button text='Touch me' style={{ marginTop: 20, color: 'pink' }} />);
 
     const button = screen.getByTestId('button');
 
-    expect(button).toHaveStyle({ marginTop: 20, color: 'pink' });
+    expect(button).toHaveStyle({ marginTop: '20px', color: 'pink' });
   });
 });
