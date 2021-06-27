@@ -1,7 +1,7 @@
 import { screen, render } from '@testing-library/react';
 import TicketDetailsItem from '@/components/TicketDetailsItem';
 
-describe('Tab', () => {
+describe('TicketDetailsItem', () => {
   it('should render title correctly', () => {
     render(<TicketDetailsItem title='0 пересадок' text='' />);
 
