@@ -13,7 +13,7 @@ describe('Button', () => {
   it('should execute onClick callback', () => {
     const fn = jest.fn();
 
-    render(<Button text='Touch me' onClick={() => fn()} />);
+    render(<Button text='Touch me' onClick={fn} />);
 
     const button = screen.getByTestId('button');
 

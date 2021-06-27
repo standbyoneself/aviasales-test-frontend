@@ -7,12 +7,16 @@ interface Props {
   style?: CSSProperties;
 }
 
-export default function Button({ text, onClick, style }: Props) {
+export default function Button({
+  text,
+  onClick = () => {},
+  style = {},
+}: Props) {
   return (
     <button
       className='button'
-      onClick={onClick && onClick}
-      style={style && style}
+      onClick={onClick}
+      style={style}
       data-testid='button'
     >
       {text}
