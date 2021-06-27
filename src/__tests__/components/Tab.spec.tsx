@@ -2,7 +2,7 @@ import { screen, render, fireEvent } from '@testing-library/react';
 import Tab from '@/components/Tab';
 
 describe('Tab', () => {
-  it('should render text correctly', () => {
+  it('should render title correctly', () => {
     render(<Tab title='Самый быстрый' />);
 
     const tab = screen.getByTestId('tab');

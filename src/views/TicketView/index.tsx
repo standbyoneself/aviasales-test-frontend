@@ -6,7 +6,7 @@ import TicketListContainer from '../../components/TicketListContainer';
 import './style.less';
 import { observer } from 'mobx-react-lite';
 import TicketStoreContext from '../../contexts/TicketStoreContext';
-import { stopFilters } from '../../constants';
+import { stopFilters, tabRecords } from '../../constants';
 
 export default observer(function TicketView() {
   const ticketStore = useContext(TicketStoreContext);
@@ -19,7 +19,7 @@ export default observer(function TicketView() {
     <section className='ticket-view'>
       <Logo />
       <Filter stopFilters={stopFilters} />
-      <Tabs />
+      <Tabs tabRecords={tabRecords} />
       <TicketListContainer />
     </section>
   );
