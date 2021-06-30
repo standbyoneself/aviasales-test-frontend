@@ -9,9 +9,9 @@ import { Ticket } from '../../types';
 
 import './style.less';
 
-type Props = Pick<Ticket, 'segments'>;
+export type TicketDetailsProps = Pick<Ticket, 'segments'>;
 
-export default function TicketDetails({ segments }: Props) {
+export default function TicketDetails({ segments }: TicketDetailsProps) {
   const [forwardRoute, backwardRoute] = segments;
 
   const forwardRoutePoints = prettyRoutePoints(
