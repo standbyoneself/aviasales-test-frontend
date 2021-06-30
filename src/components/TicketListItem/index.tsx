@@ -14,7 +14,7 @@ export default function TicketListItem({ ticket }: Props) {
 
   return (
     <CSSTransition timeout={40000} classNames='ticket-list-item-fade' in appear>
-      <div className='ticket-list-item'>
+      <div className='ticket-list-item' data-testid='ticket-list-item'>
         <div className='ticket-list-item__header'>
           <p className='ticket-price'>{prettyPrice(price)}</p>
           <AirlinesLogo IATA={carrier} />
