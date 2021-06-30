@@ -91,7 +91,7 @@ describe('TicketList', () => {
     });
 
     it('should call `ticketStore.increaseOffsetCoef()`', () => {
-      jest.spyOn(ticketStore, 'increaseOffsetCoef');
+      jest.spyOn(ticketStore, 'increaseOffsetCoef').mockImplementation();
 
       render(
         <TicketStoreContext.Provider value={ticketStore}>
