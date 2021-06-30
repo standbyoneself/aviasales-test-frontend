@@ -1,12 +1,7 @@
 import { screen, render, fireEvent } from '@testing-library/react';
 import Error from '@/components/Error';
 import TicketStoreContext from '@/contexts/TicketStoreContext';
-import HTTPClient from '@/api/HTTPClient';
-import TicketService from '@/services/TicketService';
-import TicketStore from '@/store/TicketStore';
-
-const ticketService = new TicketService(HTTPClient);
-const ticketStore = new TicketStore(ticketService);
+import ticketStore from '@/store/TicketStore';
 
 describe('Error', () => {
   it('should render img', () => {

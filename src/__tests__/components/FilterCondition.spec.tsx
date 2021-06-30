@@ -2,11 +2,7 @@ import { screen, render, fireEvent } from '@testing-library/react';
 import FilterCondition from '@/components/FilterCondition';
 import { StopFilterRecord } from '@/types';
 import TicketStoreContext from '@/contexts/TicketStoreContext';
-import HTTPClient from '@/api/HTTPClient';
-import TicketService from '@/services/TicketService';
-import TicketStore from '@/store/TicketStore';
-
-const ticketService = new TicketService(HTTPClient);
+import ticketStore from '@/store/TicketStore';
 
 const stopFilter: StopFilterRecord = {
   Все: 'all',
@@ -19,7 +15,10 @@ describe('FilterCondition', () => {
     );
 
     const filterCondition = screen.getByTestId('filter-condition');
-    const checkbox = screen.getByTestId('filter-condition-checkbox'); // Already checked
+    const checkbox = screen.getByTestId(
+      'filter-condition-checkbox'
+    ) as HTMLInputElement;
+    checkbox.checked = true;
 
     fireEvent.click(filterCondition);
 
@@ -27,8 +26,6 @@ describe('FilterCondition', () => {
   });
 
   it('should call `ticketStore.addStopFilterValue()` when checkbox was checked', () => {
-    const ticketStore = new TicketStore(ticketService);
-
     jest.spyOn(ticketStore, 'addStopFilterValue').mockImplementation();
 
     render(
@@ -37,7 +34,10 @@ describe('FilterCondition', () => {
       </TicketStoreContext.Provider>
     );
 
-    const checkbox = screen.getByTestId('filter-condition-checkbox'); // Already checked
+    const checkbox = screen.getByTestId(
+      'filter-condition-checkbox'
+    ) as HTMLInputElement;
+    checkbox.checked = true;
 
     fireEvent.click(checkbox);
     fireEvent.click(checkbox);
@@ -46,8 +46,6 @@ describe('FilterCondition', () => {
   });
 
   it('should call `ticketStore.removeStopFilterValue()` when checkbox was unchecked', () => {
-    const ticketStore = new TicketStore(ticketService);
-
     jest.spyOn(ticketStore, 'removeStopFilterValue').mockImplementation();
 
     render(
@@ -56,7 +54,10 @@ describe('FilterCondition', () => {
       </TicketStoreContext.Provider>
     );
 
-    const checkbox = screen.getByTestId('filter-condition-checkbox'); // Already checked
+    const checkbox = screen.getByTestId(
+      'filter-condition-checkbox'
+    ) as HTMLInputElement;
+    checkbox.checked = true;
 
     fireEvent.click(checkbox);
 

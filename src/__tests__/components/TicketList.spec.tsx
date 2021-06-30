@@ -2,12 +2,7 @@ import { screen, render, fireEvent } from '@testing-library/react';
 import TicketList from '@/components/TicketList';
 import { Ticket } from '@/types';
 import TicketStoreContext from '@/contexts/TicketStoreContext';
-import HTTPClient from '@/api/HTTPClient';
-import TicketService from '@/services/TicketService';
-import TicketStore from '@/store/TicketStore';
-
-const ticketService = new TicketService(HTTPClient);
-const ticketStore = new TicketStore(ticketService);
+import ticketStore from '@/store/TicketStore';
 
 const tickets: Ticket[] = [
   {

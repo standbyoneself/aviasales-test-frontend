@@ -1,5 +1,6 @@
 import { runInAction, makeAutoObservable } from 'mobx';
 import TicketService from '../services/TicketService';
+import HTTPClient from '@/api/HTTPClient';
 import {
   Ticket,
   StopFilterValue,
@@ -14,7 +15,7 @@ import {
 
 const stopFilterValues: StopFilterValue[] = ['all', 0, 1, 2, 3];
 
-export default class TicketStore {
+class TicketStore {
   searchId: string = '';
   tickets: Ticket[] = [];
   stopFilterValues: StopFilterValue[] = [...stopFilterValues];
@@ -146,3 +147,6 @@ export default class TicketStore {
     }
   }
 }
+
+const ticketService = new TicketService(HTTPClient);
+export default new TicketStore(ticketService);

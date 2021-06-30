@@ -1,14 +1,9 @@
 import { screen, render, fireEvent } from '@testing-library/react';
 import Tabs from '@/components/Tabs';
 import TicketStoreContext from '@/contexts/TicketStoreContext';
-import HTTPClient from '@/api/HTTPClient';
-import TicketService from '@/services/TicketService';
-import TicketStore from '@/store/TicketStore';
+import ticketStore from '@/store/TicketStore';
 import { SortRecord } from '@/types';
 import { runInAction } from 'mobx';
-
-const ticketService = new TicketService(HTTPClient);
-const ticketStore = new TicketStore(ticketService);
 
 const tabRecords: SortRecord[] = [{ 'Самый быстрый': 'fastest' }];
 
