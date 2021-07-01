@@ -12,7 +12,7 @@ export default function Error({ statusCode }: Props) {
   const ticketStore = useContext(TicketStoreContext);
 
   return (
-    <section className='error'>
+    <section className='error' data-testid='error'>
       <div className='error__content'>
         <img className='dasha-error' src={dashaErrorImg} alt='dasha-error' />
         <div className='error-details'>

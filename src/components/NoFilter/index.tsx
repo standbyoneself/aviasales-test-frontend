@@ -3,7 +3,7 @@ import './style.less';
 
 export default function NoFilter() {
   return (
-    <div className='no-filter'>
+    <div className='no-filter' data-testid='no-filter'>
       <div className='no-filter__text-container'>
         <p className='no-filter__text'>Даша поможет тебе выбрать фильтры,</p>
         <p className='no-filter__text no-filter__text--right'>
