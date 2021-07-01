@@ -6,8 +6,6 @@ jobs:
       - image: circleci/node:8
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: yarn
       - restore_cache:
           key: yarn-packages-{{ checksum "yarn.lock" }}
       - run:
