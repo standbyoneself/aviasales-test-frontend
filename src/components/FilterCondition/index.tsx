@@ -43,7 +43,11 @@ export default observer(function FilterCondition({ stopFilter, index }: Props) {
   };
 
   return (
-    <div className='filter-condition' onClick={toggleCheckbox}>
+    <div
+      className='filter-condition'
+      onClick={toggleCheckbox}
+      data-testid='filter-condition'
+    >
       <input
         className='filter-condition__checkbox'
         type='checkbox'
@@ -52,11 +56,13 @@ export default observer(function FilterCondition({ stopFilter, index }: Props) {
         checked={ticketStore.stopFilterValues.includes(stopFilterValue)}
         onChange={toggleCondition}
         onClick={(event) => event.stopPropagation()}
+        data-testid='filter-condition-checkbox'
       />
       <label
         className='filter-condition__label'
         htmlFor={index}
         onClick={(event) => event.stopPropagation()}
+        data-testid='filter-condition-label'
       >
         {stopFilterName}
       </label>

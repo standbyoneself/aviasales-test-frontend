@@ -16,7 +16,7 @@ export default observer(function TicketList({ tickets }: Props) {
 
   return (
     <>
-      <TransitionGroup className='ticket-list'>
+      <TransitionGroup className='ticket-list' data-testid='ticket-list'>
         {tickets.map((ticket, index) => (
           <TicketListItem ticket={ticket} key={index} />
         ))}

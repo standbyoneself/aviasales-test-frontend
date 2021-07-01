@@ -1,11 +1,6 @@
 import TicketView from './views/TicketView';
 import TicketStoreContext from './contexts/TicketStoreContext';
-import HTTPClient from './api/HTTPClient';
-import TicketService from './services/TicketService';
-import TicketStore from './store/TicketStore';
-
-const ticketService = new TicketService(HTTPClient);
-const ticketStore = new TicketStore(ticketService);
+import ticketStore from './store/TicketStore';
 
 const styles = {
   backgroundColor: '#f3f7fa',

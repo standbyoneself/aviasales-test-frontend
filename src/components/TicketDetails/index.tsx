@@ -9,9 +9,9 @@ import { Ticket } from '../../types';
 
 import './style.less';
 
-type Props = Pick<Ticket, 'segments'>;
+export type TicketDetailsProps = Pick<Ticket, 'segments'>;
 
-export default function TicketDetails({ segments }: Props) {
+export default function TicketDetails({ segments }: TicketDetailsProps) {
   const [forwardRoute, backwardRoute] = segments;
 
   const forwardRoutePoints = prettyRoutePoints(
@@ -43,7 +43,7 @@ export default function TicketDetails({ segments }: Props) {
   const backwardStops = backwardRoute.stops.join(', ');
 
   return (
-    <div className='ticket-details'>
+    <div className='ticket-details' data-testid='ticket-details'>
       <div className='ticket-details-item-container'>
         <TicketDetailsItem title={forwardRoutePoints} text={forwardTiming} />
         <TicketDetailsItem title={backwardRoutePoints} text={backwardTiming} />

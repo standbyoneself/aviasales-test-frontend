@@ -13,8 +13,9 @@ import { Ticket } from '../types';
  * @example
  * prettyPrice(15428) => '15 428 Р'
  */
+// .replace() is needed because of different behavior in other environments
 export const prettyPrice = (price: number): string => {
-  return `${price.toLocaleString('ru-RU')} Р`;
+  return `${price.toLocaleString('ru-RU')} Р`.replace(/,/g, ' ');
 };
 
 /**

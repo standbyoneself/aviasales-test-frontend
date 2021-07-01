@@ -8,13 +8,13 @@ interface Props {
   statusCode: number;
 }
 
-export default function ErrorView({ statusCode }: Props) {
+export default function Error({ statusCode }: Props) {
   const ticketStore = useContext(TicketStoreContext);
 
   return (
-    <section className='error'>
+    <section className='error' data-testid='error'>
       <div className='error__content'>
-        <img className='dasha-error' src={dashaErrorImg} />
+        <img className='dasha-error' src={dashaErrorImg} alt='dasha-error' />
         <div className='error-details'>
           <p className='error-details__intro'>
             Хьюстон, кажется, у нас проблема...

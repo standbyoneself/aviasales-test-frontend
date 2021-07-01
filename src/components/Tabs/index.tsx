@@ -5,13 +5,11 @@ import { SortName, SortRecord, SortValue } from '../../types';
 import Tab from '../Tab';
 import './style.less';
 
-const tabRecords: SortRecord[] = [
-  { 'Самый дешевый': 'cheapest' },
-  { 'Самый быстрый': 'fastest' },
-  { Оптимальный: 'optimal' },
-];
+interface Props {
+  tabRecords: SortRecord[];
+}
 
-export default observer(function Tabs() {
+export default observer(function Tabs({ tabRecords }: Props) {
   const ticketStore = useContext(TicketStoreContext);
 
   return (
