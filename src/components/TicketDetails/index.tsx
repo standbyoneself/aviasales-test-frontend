@@ -43,7 +43,7 @@ export default function TicketDetails({ segments }: TicketDetailsProps) {
   const backwardStops = backwardRoute.stops.join(', ');
 
   return (
-    <div className='ticket-details'>
+    <div className='ticket-details' data-testid='ticket-details'>
       <div className='ticket-details-item-container'>
         <TicketDetailsItem title={forwardRoutePoints} text={forwardTiming} />
         <TicketDetailsItem title={backwardRoutePoints} text={backwardTiming} />
