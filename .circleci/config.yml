@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 jobs:
   test:
     working_directory: ~/aviasales-test-frontend
@@ -18,3 +18,7 @@ jobs:
       - run:
           name: Run Tests
           command: yarn test
+workflows:
+  default:
+    jobs:
+      - test
