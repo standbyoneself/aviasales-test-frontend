@@ -131,12 +131,12 @@ export class TicketStore {
       );
 
       if (stop === false) {
-        this.getTickets(tickets, fetchedTickets);
+        await this.getTickets(tickets, fetchedTickets);
         return;
       }
 
       runInAction(() => {
-        this.tickets = tickets;
+        this.tickets = [...tickets, ...fetchedTickets];
         this.isLoading = false;
       });
     } catch (error) {
