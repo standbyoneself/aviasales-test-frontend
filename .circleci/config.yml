@@ -14,12 +14,6 @@ jobs:
           key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
-      - run:
-          name: Run locally
-          command: yarn dev
-      - run:
-          name: Run integration tests
-          command: yarn test:integration
   test_unit:
     docker:
       - image: circleci/node:12.19.0
