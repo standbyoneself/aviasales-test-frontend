@@ -6,6 +6,7 @@ import './style.less';
 import { observer } from 'mobx-react-lite';
 import { useContext } from 'react';
 import TicketStoreContext from '../../contexts/TicketStoreContext';
+import { getRestTicketsToShowWithDeclination } from '../../utils/ticketUtils';
 
 interface Props {
   tickets: Ticket[];
@@ -14,6 +15,15 @@ interface Props {
 export default observer(function TicketList({ tickets }: Props) {
   const ticketStore = useContext(TicketStoreContext);
 
+  const { restTicketsToShow } = ticketStore;
+  console.log('rest', restTicketsToShow);
+  const btnText =
+    restTicketsToShow >= 5
+      ? 'Показать еще 5 билетов!'
+      : `Показать еще ${getRestTicketsToShowWithDeclination(
+          restTicketsToShow
+        )}!`;
+
   return (
     <>
       <TransitionGroup className='ticket-list' data-testid='ticket-list'>
@@ -21,11 +31,13 @@ export default observer(function TicketList({ tickets }: Props) {
           <TicketListItem ticket={ticket} key={index} />
         ))}
       </TransitionGroup>
-      <Button
-        text='Показать еще 5 билетов!'
-        onClick={() => ticketStore.increaseOffsetCoef()}
-        style={{ marginTop: 20 }}
-      />
+      {restTicketsToShow > 0 ? (
+        <Button
+          text={btnText}
+          onClick={() => ticketStore.increaseOffsetCoef()}
+          style={{ marginTop: 20 }}
+        />
+      ) : null}
     </>
   );
 });

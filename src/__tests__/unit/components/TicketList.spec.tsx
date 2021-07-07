@@ -1,84 +1,35 @@
 import { screen, render, fireEvent } from '@testing-library/react';
 import TicketList from '@/components/TicketList';
-import { Ticket } from '@/types';
 import TicketStoreContext from '@/contexts/TicketStoreContext';
 import ticketStore from '@/store/TicketStore';
-
-const tickets: Ticket[] = [
-  {
-    price: 75171,
-    carrier: 'MH',
-    segments: [
-      {
-        origin: 'MOW',
-        destination: 'HKT',
-        date: '2021-07-04T13:54:00.000Z',
-        stops: [],
-        duration: 1868,
-      },
-      {
-        origin: 'HKT',
-        destination: 'MOW',
-        date: '2021-07-23T23:06:00.000Z',
-        stops: [],
-        duration: 1584,
-      },
-    ],
-  },
-  {
-    price: 52622,
-    carrier: 'S7',
-    segments: [
-      {
-        origin: 'MOW',
-        destination: 'HKT',
-        date: '2021-07-04T13:53:00.000Z',
-        stops: [],
-        duration: 910,
-      },
-      {
-        origin: 'HKT',
-        destination: 'MOW',
-        date: '2021-07-24T09:07:00.000Z',
-        stops: [],
-        duration: 1487,
-      },
-    ],
-  },
-  {
-    price: 54291,
-    carrier: 'SU',
-    segments: [
-      {
-        origin: 'MOW',
-        destination: 'HKT',
-        date: '2021-07-04T12:27:00.000Z',
-        stops: ['AUH', 'SIN'],
-        duration: 781,
-      },
-      {
-        origin: 'HKT',
-        destination: 'MOW',
-        date: '2021-07-24T03:01:00.000Z',
-        stops: [],
-        duration: 959,
-      },
-    ],
-  },
-];
+import { ticket } from '../../ticket.stub';
 
 describe('TicketList', () => {
   it('should render correct number of TicketListItem', () => {
-    render(<TicketList tickets={tickets} />);
+    const numberOfTickets = 3;
+
+    ticketStore.tickets = Array(numberOfTickets).fill(ticket);
+
+    render(
+      <TicketStoreContext.Provider value={ticketStore}>
+        <TicketList tickets={ticketStore.tickets} />
+      </TicketStoreContext.Provider>
+    );
 
     const ticketListItems = screen.getAllByTestId('ticket-list-item');
 
-    expect(ticketListItems).toHaveLength(3);
+    expect(ticketListItems).toHaveLength(numberOfTickets);
   });
 
   describe('Button', () => {
     it('should have text `Показать еще 5 билетов!`', () => {
-      render(<TicketList tickets={tickets} />);
+      ticketStore.tickets = Array(11).fill(ticket);
+
+      render(
+        <TicketStoreContext.Provider value={ticketStore}>
+          <TicketList tickets={ticketStore.tickets} />
+        </TicketStoreContext.Provider>
+      );
 
       const button = screen.getByRole('button');
 
@@ -86,11 +37,12 @@ describe('TicketList', () => {
     });
 
     it('should call `ticketStore.increaseOffsetCoef()`', () => {
+      ticketStore.tickets = Array(6).fill(ticket);
       jest.spyOn(ticketStore, 'increaseOffsetCoef').mockImplementation();
 
       render(
         <TicketStoreContext.Provider value={ticketStore}>
-          <TicketList tickets={tickets} />
+          <TicketList tickets={ticketStore.tickets} />
         </TicketStoreContext.Provider>
       );
 
@@ -102,11 +54,29 @@ describe('TicketList', () => {
     });
 
     it('should have inline style `margin-top: 20px`', () => {
-      render(<TicketList tickets={tickets} />);
+      ticketStore.tickets = Array(6).fill(ticket);
+
+      render(
+        <TicketStoreContext.Provider value={ticketStore}>
+          <TicketList tickets={ticketStore.tickets} />
+        </TicketStoreContext.Provider>
+      );
 
       const button = screen.getByRole('button');
 
       expect(button).toHaveStyle({ marginTop: '20px' });
+    });
+
+    it('should not render if there are no tickets to show in the store', () => {
+      ticketStore.tickets = Array(5).fill(ticket);
+
+      render(
+        <TicketStoreContext.Provider value={ticketStore}>
+          <TicketList tickets={ticketStore.tickets} />
+        </TicketStoreContext.Provider>
+      );
+
+      expect(screen.queryByRole('button')).not.toBeInTheDocument();
     });
   });
 });
