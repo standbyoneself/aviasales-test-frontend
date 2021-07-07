@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  cypress: cypress-io/cypress@1.28.0
 jobs:
   install_deps:
     docker:
@@ -34,3 +36,7 @@ workflows:
       - test_unit:
           requires:
             - install_deps
+      - cypress/run:
+          requires:
+            - install_deps
+          attach-workspace: true
