@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  build:
+  install_deps:
     docker:
       - image: circleci/node:12.19.0
     steps:
@@ -14,17 +14,23 @@ jobs:
           key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - ./
   test_unit:
     docker:
       - image: circleci/node:12.19.0
     steps:
+      - attach_workspace:
+          - at: ~/
       - run:
           name: Run Tests
           command: yarn test:unit
 workflows:
   default:
     jobs:
-      - build
+      - install_deps
       - test_unit:
           requires:
-            - build
+            - install_deps
