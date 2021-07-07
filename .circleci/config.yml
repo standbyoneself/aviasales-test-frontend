@@ -23,7 +23,7 @@ jobs:
       - image: circleci/node:12.19.0
     steps:
       - attach_workspace:
-          - at: ~/
+          at: ~/
       - run:
           name: Run Tests
           command: yarn test:unit
