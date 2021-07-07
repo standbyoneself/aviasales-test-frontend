@@ -104,7 +104,7 @@ const getDeclination = (n: number, declinations: string[]): string => {
  * @returns {string} The string formatted as `n пересадка(-ки, -ок)`
  *
  * @example
- * getStopsCountWithDeclination(0) => '0 пересадок'
+ * getStopsCountWithDeclination(0) => 'Прямой'
  *
  * @example
  * getStopsCountWithDeclination(1) => '1 пересадка'
@@ -115,7 +115,7 @@ const getDeclination = (n: number, declinations: string[]): string => {
 export const getStopsCountWithDeclination = (n: number): string => {
   const declinations = ['пересадка', 'пересадки', 'пересадок'];
   const declination = getDeclination(n, declinations);
-  return `${n} ${declination}`;
+  return n === 0 ? 'Прямой' : `${n} ${declination}`;
 };
 
 export const getDuration = (ticket: Ticket) =>
