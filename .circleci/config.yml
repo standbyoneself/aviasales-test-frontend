@@ -41,3 +41,4 @@ workflows:
           requires:
             - install_deps
           attach-workspace: true
+          start: yarn dev
