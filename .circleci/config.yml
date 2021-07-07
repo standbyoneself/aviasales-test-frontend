@@ -1,7 +1,6 @@
 version: 2.1
 jobs:
-  test:
-    working_directory: ~/aviasales-test-frontend
+  build:
     docker:
       - image: circleci/node:12.19.0
     steps:
@@ -16,9 +15,22 @@ jobs:
           paths:
             - ~/.cache/yarn
       - run:
+          name: Run locally
+          command: yarn dev
+      - run:
+          name: Run integration tests
+          command: yarn test:integration
+  test_unit:
+    docker:
+      - image: circleci/node:12.19.0
+    steps:
+      - run:
           name: Run Tests
-          command: yarn test
+          command: yarn test:unit
 workflows:
   default:
     jobs:
-      - test
+      - build
+      - test_unit:
+          requires:
+            - build
