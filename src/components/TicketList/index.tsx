@@ -16,7 +16,6 @@ export default observer(function TicketList({ tickets }: Props) {
   const ticketStore = useContext(TicketStoreContext);
 
   const { restTicketsToShow } = ticketStore;
-  console.log('rest', restTicketsToShow);
   const btnText =
     restTicketsToShow >= 5
       ? 'Показать еще 5 билетов!'
