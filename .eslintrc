@@ -3,5 +3,6 @@
   "rules": {
     "jsx-a11y/alt-text": "off",
     "no-console": "warn"
-  }
+  },
+  "ignorePatterns": ["src/__tests__/integration"]
 }

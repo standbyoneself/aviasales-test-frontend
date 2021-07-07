@@ -1,7 +1,8 @@
 version: 2.1
+orbs:
+  cypress: cypress-io/cypress@1.28.0
 jobs:
-  test:
-    working_directory: ~/aviasales-test-frontend
+  install_deps:
     docker:
       - image: circleci/node:12.19.0
     steps:
@@ -15,10 +16,41 @@ jobs:
           key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - ./
+  test_unit:
+    docker:
+      - image: circleci/node:12.19.0
+    steps:
+      - attach_workspace:
+          at: ~/
       - run:
           name: Run Tests
-          command: yarn test
+          command: yarn test:unit
+  trigger_deploy:
+    docker:
+      - image: circleci/node:12.19.0
+    steps:
+      - run: curl https://api.vercel.com/v1/integrations/deploy/prj_NYWYUfYnAUpkyoWeGnLqJVh7L0Ei/w1vAP06xFG
 workflows:
   default:
     jobs:
-      - test
+      - install_deps
+      - test_unit:
+          requires:
+            - install_deps
+      - cypress/run:
+          requires:
+            - install_deps
+          attach-workspace: true
+          start: yarn dev
+      - trigger_deploy:
+          requires:
+            - test_unit
+            - cypress/run
+          filters:
+            branches:
+              only:
+                - master

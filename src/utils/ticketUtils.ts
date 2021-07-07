@@ -118,6 +118,29 @@ export const getStopsCountWithDeclination = (n: number): string => {
   return n === 0 ? 'Прямой' : `${n} ${declination}`;
 };
 
+/**
+ * Returns the string
+ * contains the number of
+ * the rest tickets from the store to show
+ * and the right declination
+ * @param {number} n - The amount of rest tickets
+ * @returns {string} The string formatted as `n билет(-а, -ов)`
+ *
+ * @example
+ * getRestTicketsToShowWithDeclination(0) => '0 билетов'
+ *
+ * @example
+ * getRestTicketsToShowWithDeclination(1) => '1 билет'
+ *
+ * @example
+ * getRestTicketsToShowWithDeclination(2) => '2 билета'
+ */
+export const getRestTicketsToShowWithDeclination = (n: number): string => {
+  const declinations = ['билет', 'билета', 'билетов'];
+  const declination = getDeclination(n, declinations);
+  return `${n} ${declination}`;
+};
+
 export const getDuration = (ticket: Ticket) =>
   ticket.segments.reduce((acc, segment) => (acc += segment.duration), 0);
 

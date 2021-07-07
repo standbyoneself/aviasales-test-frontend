@@ -71,6 +71,10 @@ export class TicketStore {
     return !this.stopFilterValues.length;
   }
 
+  get restTicketsToShow() {
+    return this.tickets.length - this.offsetCoef * 5;
+  }
+
   increaseOffsetCoef() {
     this.offsetCoef++;
   }
