@@ -1,7 +1,15 @@
 import HTTPService from './HTTPService';
 import { SearchIdResponse, TicketResponse } from '../types';
 
-export default class TicketService extends HTTPService {
+export interface ITicketService {
+  fetchSearchId: () => Promise<SearchIdResponse>;
+  fetchTickets: (searchId: string) => Promise<TicketResponse>;
+}
+
+export default class TicketService
+  extends HTTPService
+  implements ITicketService
+{
   async fetchSearchId() {
     return this.client
       .get<SearchIdResponse>('/search')
