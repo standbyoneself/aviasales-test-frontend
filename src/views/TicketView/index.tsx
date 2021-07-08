@@ -4,11 +4,10 @@ import Filter from '../../components/Filter';
 import Tabs from '../../components/Tabs';
 import TicketListContainer from '../../components/TicketListContainer';
 import './style.less';
-import { observer } from 'mobx-react-lite';
 import TicketStoreContext from '../../contexts/TicketStoreContext';
 import { stopFilters, tabRecords } from '../../constants';
 
-export default observer(function TicketView() {
+export default function TicketView() {
   const ticketStore = useContext(TicketStoreContext);
 
   useEffect(() => {
@@ -23,4 +22,4 @@ export default observer(function TicketView() {
       <TicketListContainer />
     </section>
   );
-});
+}
