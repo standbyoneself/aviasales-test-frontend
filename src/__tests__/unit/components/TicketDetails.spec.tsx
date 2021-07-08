@@ -1,28 +1,14 @@
 import { screen, render } from '@testing-library/react';
-import TicketDetails, { TicketDetailsProps } from '@/components/TicketDetails';
+import TicketDetails from '@/components/TicketDetails';
 import {
   formatTime,
   formatTiming,
   getStopsCountWithDeclination,
   prettyRoutePoints,
 } from '@/utils/ticketUtils';
+import { ticket } from '../../ticket.stub';
 
-const segments = [
-  {
-    origin: 'MOW',
-    destination: 'HKT',
-    date: '2021-07-03T23:14:00.000Z',
-    stops: ['SIN', 'DXB'],
-    duration: 968,
-  },
-  {
-    origin: 'HKT',
-    destination: 'MOW',
-    date: '2021-07-24T02:03:00.000Z',
-    stops: ['HKG', 'KUL', 'BKK'],
-    duration: 1378,
-  },
-] as TicketDetailsProps['segments'];
+const segments = ticket.segments;
 
 const [forwardRoute, backwardRoute] = segments;
 
@@ -55,19 +41,24 @@ describe('TicketDetails', () => {
   it('should render all the ticket details correctly', () => {
     render(<TicketDetails segments={segments} />);
 
-    expect(screen.getByText(forwardRoutePoints)).toBeInTheDocument();
-    expect(screen.getByText(forwardTiming)).toBeInTheDocument();
+    const ticketDetailsItems = screen.getAllByTestId('ticket-details-item');
 
-    expect(screen.getByText(backwardRoutePoints)).toBeInTheDocument();
-    expect(screen.getByText(backwardTiming)).toBeInTheDocument();
+    expect(ticketDetailsItems[0]).toHaveTextContent(forwardRoutePoints);
+    expect(ticketDetailsItems[0]).toHaveTextContent(forwardTiming);
 
-    expect(screen.getByText(forwardTime)).toBeInTheDocument();
-    expect(screen.getByText(backwardTime)).toBeInTheDocument();
+    expect(ticketDetailsItems[1]).toHaveTextContent(backwardRoutePoints);
+    expect(ticketDetailsItems[1]).toHaveTextContent(backwardTiming);
 
-    expect(screen.getByText(forwardStopsCount)).toBeInTheDocument();
-    expect(screen.getByText(backwardStopsCount)).toBeInTheDocument();
+    expect(ticketDetailsItems[2]).toHaveTextContent('В пути');
+    expect(ticketDetailsItems[2]).toHaveTextContent(forwardTime);
 
-    expect(screen.getByText(forwardStops)).toBeInTheDocument();
-    expect(screen.getByText(backwardStops)).toBeInTheDocument();
+    expect(ticketDetailsItems[3]).toHaveTextContent('В пути');
+    expect(ticketDetailsItems[3]).toHaveTextContent(backwardTime);
+
+    expect(ticketDetailsItems[4]).toHaveTextContent(forwardStopsCount);
+    expect(ticketDetailsItems[4]).toHaveTextContent(forwardStops);
+
+    expect(ticketDetailsItems[5]).toHaveTextContent(backwardStopsCount);
+    expect(ticketDetailsItems[5]).toHaveTextContent(backwardStops);
   });
 });
