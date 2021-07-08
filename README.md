@@ -16,9 +16,13 @@ Fully responsive SPA that allows to filter and sort air tickets
 
 `yarn build`
 
-### Test
+### Run unit tests (Jest, React Testing Library)
 
-`yarn test`
+`yarn test:unit`
+
+### Run integration tests (Cypress). Requires starting development
+
+`yarn test:integration`
 
 ### Lint (ESLint)
 
