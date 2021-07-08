@@ -29,11 +29,6 @@ jobs:
       - run:
           name: Run Tests
           command: yarn test:unit
-  trigger_deploy:
-    docker:
-      - image: circleci/node:12.19.0
-    steps:
-      - run: curl https://api.vercel.com/v1/integrations/deploy/prj_NYWYUfYnAUpkyoWeGnLqJVh7L0Ei/w1vAP06xFG
 workflows:
   default:
     jobs:
@@ -46,11 +41,3 @@ workflows:
             - install_deps
           attach-workspace: true
           start: yarn dev
-      - trigger_deploy:
-          requires:
-            - test_unit
-            - cypress/run
-          filters:
-            branches:
-              only:
-                - master
