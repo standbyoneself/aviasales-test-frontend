@@ -20,7 +20,7 @@ Fully responsive SPA that allows to filter and sort air tickets
 
 `yarn test:unit`
 
-### Run integration tests (Cypress). Requires starting development
+### Run integration tests (Cypress). Requires starting development server
 
 `yarn test:integration`
 
