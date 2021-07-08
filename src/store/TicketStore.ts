@@ -1,5 +1,5 @@
 import { runInAction, makeAutoObservable } from 'mobx';
-import TicketService from '../services/TicketService';
+import TicketService, { ITicketService } from '../services/TicketService';
 import HTTPClient from '../api/HTTPClient';
 import {
   Ticket,
@@ -24,7 +24,7 @@ export class TicketStore {
   offsetCoef: number = 1;
   isLoading: boolean = false;
 
-  constructor(protected readonly service: TicketService) {
+  constructor(private readonly service: ITicketService) {
     this.service = service;
     makeAutoObservable(this);
   }
