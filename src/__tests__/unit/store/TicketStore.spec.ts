@@ -2,31 +2,11 @@ import { TicketStore } from '@/store/TicketStore';
 import TicketService from '@/services/TicketService';
 import HTTPClient from '@/api/HTTPClient';
 import { SearchIdResponse, Ticket, TicketResponse } from '@/types';
+import { ticket } from '../../ticket.stub';
 
-const stubbedTicket: Ticket = {
-  price: 98725,
-  carrier: 'EK',
-  segments: [
-    {
-      origin: 'MOW',
-      destination: 'HKT',
-      date: '2021-07-12T04:18:00.000Z',
-      stops: ['IST', 'HKG'],
-      duration: 842,
-    },
-    {
-      origin: 'HKT',
-      destination: 'MOW',
-      date: '2021-08-01T01:33:00.000Z',
-      stops: ['SIN', 'AUH'],
-      duration: 662,
-    },
-  ],
-};
-
-const stubbedAnotherTicket = {
-  ...stubbedTicket,
-  price: stubbedTicket.price + 100,
+const anotherTicket = {
+  ...ticket,
+  price: ticket.price + 100,
 };
 
 describe('TicketStore', () => {
@@ -114,12 +94,12 @@ describe('TicketStore', () => {
 
   it('should get the `tickets`', async () => {
     const stubbedResponseFirst: TicketResponse = {
-      tickets: [stubbedTicket],
+      tickets: [ticket],
       stop: false,
     };
 
     const stubbedResponseSecond: TicketResponse = {
-      tickets: [stubbedAnotherTicket],
+      tickets: [anotherTicket],
       stop: true,
     };
 
@@ -137,13 +117,13 @@ describe('TicketStore', () => {
 
     await ticketStore.getTickets();
 
-    expect(ticketStore.tickets).toContainEqual(stubbedTicket);
-    expect(ticketStore.tickets).toContainEqual(stubbedAnotherTicket);
+    expect(ticketStore.tickets).toContainEqual(ticket);
+    expect(ticketStore.tickets).toContainEqual(anotherTicket);
   });
 
   it('should set the `isLoading` to true when call `getTickets()`', () => {
     const stubbedResponse: TicketResponse = {
-      tickets: [stubbedTicket],
+      tickets: [ticket],
       stop: true,
     };
 
@@ -162,7 +142,7 @@ describe('TicketStore', () => {
 
   it('should set the `statusCode` to true when call `getTickets()`', () => {
     const stubbedResponse: TicketResponse = {
-      tickets: [stubbedTicket],
+      tickets: [ticket],
       stop: true,
     };
 
@@ -181,7 +161,7 @@ describe('TicketStore', () => {
 
   it('should call `getSearchId()` if there isn`t searchId', () => {
     const stubbedResponse: TicketResponse = {
-      tickets: [stubbedTicket],
+      tickets: [ticket],
       stop: true,
     };
 
@@ -199,7 +179,7 @@ describe('TicketStore', () => {
 
   it('should set the `isLoading` to false when tickets were getted', async () => {
     const stubbedResponse: TicketResponse = {
-      tickets: [stubbedTicket],
+      tickets: [ticket],
       stop: true,
     };
 
