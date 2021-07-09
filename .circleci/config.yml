@@ -3,6 +3,7 @@ orbs:
   cypress: cypress-io/cypress@1.28.0
 jobs:
   install_deps:
+    working_directory: ~/aviasales-test-frontend
     docker:
       - image: circleci/node:12.19.0
     steps:
@@ -17,15 +18,15 @@ jobs:
           paths:
             - ~/.cache/yarn
       - persist_to_workspace:
-          root: ~/
+          root: ~/aviasales-test-frontend
           paths:
-            - ./
+            - .
   test_unit:
     docker:
       - image: circleci/node:12.19.0
     steps:
       - attach_workspace:
-          at: ~/
+          at: ~/aviasales-test-frontend
       - run:
           name: Run Tests
           command: yarn test:unit
@@ -33,6 +34,8 @@ jobs:
     docker:
       - image: circleci/node:12.19.0
     steps:
+      - attach_workspace:
+          at: ~/aviasales-test-frontend
       - run:
           name: Install Vercel
           command: yarn global add vercel
