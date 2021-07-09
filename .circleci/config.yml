@@ -30,6 +30,12 @@ jobs:
           at: ~/
       - run: pwd
       - run: ls -al
+      - run: cd ..
+      - run: pwd
+      - run: ls -al
+      - run: cd project
+      - run: pwd
+      - run: ls -al
       - run:
           name: Run unit tests
           command: yarn test:unit
