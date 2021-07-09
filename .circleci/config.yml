@@ -1,6 +1,4 @@
 version: 2.1
-orbs:
-  cypress: cypress-io/cypress@1.28.0
 jobs:
   install_deps:
     working_directory: ~/aviasales-test-frontend
@@ -11,7 +9,7 @@ jobs:
       - restore_cache:
           key: yarn-packages-{{ checksum "yarn.lock" }}
       - run:
-          name: Install Dependencies
+          name: Install dependencies
           command: yarn install --frozen-lockfile --cache-folder ~/.cache/yarn --ignore-engines
       - save_cache:
           key: yarn-packages-{{ checksum "yarn.lock" }}
@@ -28,8 +26,20 @@ jobs:
       - attach_workspace:
           at: ~/
       - run:
-          name: Run Tests
+          name: Run unit tests
           command: yarn test:unit
+  test_integration:
+    docker:
+      - image: circleci/node:12.19.0
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Start dev server
+          command: yarn dev
+      - run:
+          name: Run integration tests
+          command: yarn test:integration
   deploy:
     working_directory: ~/aviasales-test-frontend
     docker:
@@ -53,15 +63,13 @@ workflows:
       - test_unit:
           requires:
             - install_deps
-      - cypress/run:
+      - test_integration:
           requires:
             - install_deps
-          attach-workspace: true
-          start: yarn dev
       - deploy:
           requires:
             - test_unit
-            - cypress/run
+            - test_integration
           filters:
             branches:
               only:
