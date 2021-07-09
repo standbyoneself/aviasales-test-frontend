@@ -3,6 +3,7 @@ orbs:
   cypress: cypress-io/cypress@1.28.0
 jobs:
   install_deps:
+    working_directory: ~/aviasales-test-frontend
     docker:
       - image: circleci/node:12.19.0
     steps:
@@ -23,6 +24,7 @@ jobs:
       - run: pwd
       - run: ls -al
   test_unit:
+    working_directory: ~/aviasales-test-frontend
     docker:
       - image: circleci/node:12.19.0
     steps:
@@ -40,12 +42,6 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/
-      - run: pwd
-      - run: ls -al
-      - run: cd ..
-      - run: pwd
-      - run: ls -al
-      - run: cd project
       - run: pwd
       - run: ls -al
       # - run:
