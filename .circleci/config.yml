@@ -79,6 +79,7 @@ workflows:
           requires:
             - install_deps
       - cypress/run:
+          working_directory: ~/aviasales-test-frontend
           requires:
             - install_deps
           start: yarn dev
