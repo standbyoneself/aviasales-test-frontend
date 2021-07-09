@@ -29,7 +29,7 @@ jobs:
       - run:
           name: Run unit tests
           command: yarn test:unit
-  deploy:
+  deploy_preview:
     working_directory: ~/aviasales-test-frontend
     docker:
       - image: circleci/node:12.19.0
@@ -43,8 +43,24 @@ jobs:
           echo 'export PATH=/home/circleci/.yarn/bin:$PATH' >> $BASH_ENV
           source $BASH_ENV
       - run:
-          name: Deploy
+          name: Preview deploy
           command: vercel -c -t $VERCEL_TOKEN
+  deploy_production:
+    working_directory: ~/aviasales-test-frontend
+    docker:
+      - image: circleci/node:12.19.0
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Install Vercel
+          command: yarn global add vercel
+      - run: |
+          echo 'export PATH=/home/circleci/.yarn/bin:$PATH' >> $BASH_ENV
+          source $BASH_ENV
+      - run:
+          name: Production deploy
+          command: vercel -c -t $VERCEL_TOKEN --prod
 workflows:
   default:
     jobs:
@@ -57,7 +73,11 @@ workflows:
             - install_deps
           start: yarn dev
           attach-workspace: true
-      - deploy:
+      - deploy_preview:
+          requires:
+            - test_unit
+            - cypress/run
+      - deploy_production:
           requires:
             - test_unit
             - cypress/run
