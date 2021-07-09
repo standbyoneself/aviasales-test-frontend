@@ -36,6 +36,9 @@ jobs:
       - run:
           name: Install Vercel
           command: yarn global add vercel
+      - run: |
+          echo 'export PATH=/home/circleci/.yarn/bin:$PATH' >> $BASH_ENV
+          source $BASH_ENV
       - run:
           name: Deploy
           command: vercel -c -t $VERCEL_TOKEN
