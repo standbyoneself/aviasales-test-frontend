@@ -36,9 +36,7 @@ jobs:
           at: ~/
       - run:
           name: Run integration tests
-          command: |
-            yarn dev
-            yarn test:integration
+          command: yarn dev && yarn test:integration
   deploy:
     working_directory: ~/aviasales-test-frontend
     docker:
