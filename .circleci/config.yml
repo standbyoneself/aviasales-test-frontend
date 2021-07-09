@@ -21,8 +21,6 @@ jobs:
           root: ~/
           paths:
             - ./
-      - run: pwd
-      - run: ls -al
   test_unit:
     working_directory: ~/aviasales-test-frontend
     docker:
@@ -30,8 +28,6 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/
-      - run: pwd
-      - run: ls -al
       - run:
           name: Run unit tests
           command: yarn test:unit
@@ -42,17 +38,15 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/
-      - run: pwd
-      - run: ls -al
-      # - run:
-      #     name: Install Vercel
-      #     command: yarn global add vercel
-      # - run: |
-      #     echo 'export PATH=/home/circleci/.yarn/bin:$PATH' >> $BASH_ENV
-      #     source $BASH_ENV
-      # - run:
-      #     name: Preview deploy
-      #     command: vercel -c -t $VERCEL_TOKEN
+      - run:
+          name: Install Vercel
+          command: yarn global add vercel
+      - run: |
+          echo 'export PATH=/home/circleci/.yarn/bin:$PATH' >> $BASH_ENV
+          source $BASH_ENV
+      - run:
+          name: Preview deploy
+          command: vercel -c -t $VERCEL_TOKEN
   deploy_production:
     working_directory: ~/aviasales-test-frontend
     docker:
@@ -60,8 +54,6 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/
-      - run: pwd
-      - run: ls -al
       - run:
           name: Install Vercel
           command: yarn global add vercel
