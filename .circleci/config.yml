@@ -20,12 +20,16 @@ jobs:
           root: ~/
           paths:
             - ./
+      - run: pwd
+      - run: ls -al
   test_unit:
     docker:
       - image: circleci/node:12.19.0
     steps:
       - attach_workspace:
           at: ~/
+      - run: pwd
+      - run: ls -al
       - run:
           name: Run unit tests
           command: yarn test:unit
@@ -54,6 +58,8 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/
+      - run: pwd
+      - run: ls -al
       - run:
           name: Install Vercel
           command: yarn global add vercel
