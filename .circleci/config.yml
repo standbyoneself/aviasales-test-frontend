@@ -35,11 +35,10 @@ jobs:
       - attach_workspace:
           at: ~/
       - run:
-          name: Start dev server
-          command: yarn dev
-      - run:
           name: Run integration tests
-          command: yarn test:integration
+          command: |
+            yarn dev
+            yarn test:integration
   deploy:
     working_directory: ~/aviasales-test-frontend
     docker:
