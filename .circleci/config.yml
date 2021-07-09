@@ -36,15 +36,17 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/
-      - run:
-          name: Install Vercel
-          command: yarn global add vercel
-      - run: |
-          echo 'export PATH=/home/circleci/.yarn/bin:$PATH' >> $BASH_ENV
-          source $BASH_ENV
-      - run:
-          name: Preview deploy
-          command: vercel -c -t $VERCEL_TOKEN
+      - run: pwd
+      - run: ls -al
+      # - run:
+      #     name: Install Vercel
+      #     command: yarn global add vercel
+      # - run: |
+      #     echo 'export PATH=/home/circleci/.yarn/bin:$PATH' >> $BASH_ENV
+      #     source $BASH_ENV
+      # - run:
+      #     name: Preview deploy
+      #     command: vercel -c -t $VERCEL_TOKEN
   deploy_production:
     working_directory: ~/aviasales-test-frontend
     docker:
