@@ -3,7 +3,6 @@ orbs:
   cypress: cypress-io/cypress@1.28.0
 jobs:
   install_deps:
-    working_directory: ~/aviasales-test-frontend
     docker:
       - image: circleci/node:12.19.0
     steps:
@@ -18,7 +17,7 @@ jobs:
           paths:
             - ~/.cache/yarn
       - persist_to_workspace:
-          root: ~/aviasales-test-frontend
+          root: ~/
           paths:
             - ./
   test_unit:
