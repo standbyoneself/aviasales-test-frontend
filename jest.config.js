@@ -1,9 +1,9 @@
 module.exports = {
-  roots: ['<rootDir>/src'],
+  roots: ['<rootDir>'],
   collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!src/**/*.d.ts'],
   setupFiles: ['react-app-polyfill/jsdom'],
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
-  testMatch: ['<rootDir>/src/__tests__/unit/**/*.{js,jsx,ts,tsx}'],
+  testMatch: ['<rootDir>/__tests__/unit/**/*.{js,jsx,ts,tsx}'],
   testEnvironment: 'jsdom',
   testRunner: '<rootDir>/node_modules/jest-circus/runner.js',
   transform: {
