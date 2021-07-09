@@ -29,6 +29,16 @@ jobs:
       - run:
           name: Run Tests
           command: yarn test:unit
+  deploy:
+    docker:
+      - image: circleci/node:12.19.0
+    steps:
+      - run:
+          name: Install Vercel
+          command: yarn global add vercel
+      - run:
+          name: Deploy
+          command: vercel -c -t $VERCEL_TOKEN
 workflows:
   default:
     jobs:
@@ -41,3 +51,11 @@ workflows:
             - install_deps
           attach-workspace: true
           start: yarn dev
+      - deploy:
+          requires:
+            - test_unit
+            - cypress/run
+          filters:
+            branches:
+              only:
+                - master
