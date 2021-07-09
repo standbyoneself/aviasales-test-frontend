@@ -20,22 +20,23 @@ jobs:
       - persist_to_workspace:
           root: ~/aviasales-test-frontend
           paths:
-            - .
+            - ./
   test_unit:
     docker:
       - image: circleci/node:12.19.0
     steps:
       - attach_workspace:
-          at: ~/aviasales-test-frontend
+          at: ~/
       - run:
           name: Run Tests
           command: yarn test:unit
   deploy:
+    working_directory: ~/aviasales-test-frontend
     docker:
       - image: circleci/node:12.19.0
     steps:
       - attach_workspace:
-          at: ~/aviasales-test-frontend
+          at: ~/
       - run:
           name: Install Vercel
           command: yarn global add vercel
